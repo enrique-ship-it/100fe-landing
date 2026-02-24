@@ -1,0 +1,27 @@
+# Node modules (opcional si usamos build tools después)
+node_modules/
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+.vercel
+.next
+
+# Dependencies lock (opcional)
+package-lock.json
+yarn.lock
