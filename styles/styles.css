@@ -3,10 +3,10 @@
    ================================================================ */
 
 :root {
-    /* NOTA: Actualizar con colores reales del ebook */
-    --color-primary: #2C5F2D;      /* Verde cristiano */
-    --color-secondary: #8B6914;    /* Dorado/Tierra */
-    --color-accent: #E6DCB2;       /* Crema */
+    /* Colores oficiales del ebook 100Fe */
+    --color-primary: #86fc00;      /* Verde neón (principal) */
+    --color-secondary: #fe4076;    /* Rosa carmesí (secundario) */
+    --color-accent: #f0f0f0;       /* Gris muy claro */
     --color-text: #1A1A1A;         /* Casi negro */
     --color-text-light: #666;      /* Gris oscuro */
     --color-border: #DDD;          /* Gris claro */
@@ -106,7 +106,7 @@ a:hover {
    ================================================================ */
 
 .header {
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     color: var(--color-white);
     padding: var(--spacing-lg) 0;
     text-align: center;
@@ -131,16 +131,34 @@ a:hover {
    ================================================================ */
 
 .hero {
-    background: linear-gradient(135deg, var(--color-primary) 0%, #1e4620 100%);
+    background: linear-gradient(135deg, #8B3A8B 0%, #5D2A5D 100%);
     color: var(--color-white);
     padding: var(--spacing-2xl) 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/images/diseno-ebook.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 0;
 }
 
 .hero__content {
     max-width: 700px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    position: relative;
+    z-index: 1;
 }
 
 .hero__headline {
@@ -150,7 +168,7 @@ a:hover {
 }
 
 .hero__headline .highlight {
-    color: var(--color-accent);
+    color: var(--color-primary);
     display: block;
     margin-top: var(--spacing-sm);
 }
@@ -173,22 +191,22 @@ a:hover {
    ================================================================ */
 
 .cta-button {
-    background-color: var(--color-secondary);
-    color: var(--color-white);
+    background-color: var(--color-primary);
+    color: #000;
     border: none;
     padding: var(--spacing-md) var(--spacing-lg);
     font-size: var(--font-size-base);
     border-radius: var(--border-radius);
     cursor: pointer;
     transition: var(--transition);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-block;
 }
 
 .cta-button:hover {
-    background-color: #6d5410;
+    background-color: #6fcd00;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
@@ -198,7 +216,8 @@ a:hover {
 }
 
 .cta-button--primary {
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
+    color: #000;
 }
 
 .cta-button--large {
@@ -216,7 +235,7 @@ section {
 
 .section__title {
     text-align: center;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     margin-bottom: var(--spacing-lg);
     font-size: var(--font-size-h2);
 }
@@ -299,7 +318,7 @@ section {
 }
 
 .benefit__title {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -328,7 +347,7 @@ section {
     background-color: var(--color-white);
     padding: var(--spacing-lg);
     border-radius: var(--border-radius);
-    border-left: 4px solid var(--color-secondary);
+    border-left: 4px solid var(--color-primary);
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
@@ -359,7 +378,7 @@ section {
 .testimonial__name {
     margin: 0;
     font-size: var(--font-size-base);
-    color: var(--color-primary);
+    color: var(--color-secondary);
 }
 
 .testimonial__age {
@@ -377,7 +396,7 @@ section {
 }
 
 .testimonial__rating {
-    color: var(--color-secondary);
+    color: var(--color-primary);
     font-size: var(--font-size-small);
 }
 
@@ -386,7 +405,7 @@ section {
    ================================================================ */
 
 .cta-section {
-    background: linear-gradient(135deg, var(--color-primary) 0%, #1e4620 100%);
+    background: linear-gradient(135deg, #8B3A8B 0%, #5D2A5D 100%);
     color: var(--color-white);
     text-align: center;
 }
@@ -397,7 +416,7 @@ section {
 }
 
 .section__trust {
-    color: var(--color-accent);
+    color: var(--color-primary);
     font-size: var(--font-size-small);
     line-height: 1.8;
 }
@@ -423,7 +442,7 @@ section {
    ================================================================ */
 
 .footer {
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     color: var(--color-white);
     padding: var(--spacing-lg) 0;
     text-align: center;
@@ -439,11 +458,18 @@ section {
 }
 
 .footer__link {
-    color: var(--color-accent);
+    color: var(--color-primary);
 }
 
 .footer__link:hover {
     opacity: 0.8;
+}
+
+.footer__brand {
+    margin-top: var(--spacing-md);
+    opacity: 0.7;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
 /* ================================================================

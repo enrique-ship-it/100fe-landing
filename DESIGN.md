@@ -7,9 +7,9 @@
 ## 🎨 Paleta de Colores
 
 ```css
---color-primary: #2C5F2D;      /* Verde cristiano */
---color-secondary: #8B6914;    /* Dorado/Tierra */
---color-accent: #E6DCB2;       /* Crema */
+--color-primary: #86fc00;      /* Verde neón (del ebook) */
+--color-secondary: #fe4076;    /* Rosa carmesí (del ebook) */
+--color-accent: #f0f0f0;       /* Gris muy claro */
 --color-text: #1A1A1A;         /* Casi negro */
 --color-text-light: #666;      /* Gris oscuro */
 --color-border: #DDD;          /* Gris claro */
@@ -19,21 +19,34 @@
 
 ### Notas sobre Colores
 
-- **Primary (Verde)**: Confianza, crecimiento, naturaleza
-- **Secondary (Dorado)**: Riqueza, valor, espiritualidad
-- **Accent (Crema)**: Calidez, accesibilidad para 45+
+- **Primary (Verde Neón #86fc00)**: El color del "100" en la portada. Alto impacto, modernidad, energía. Usado en CTAs y acentos.
+- **Secondary (Rosa Carmesí #fe4076)**: El color principal del branding del ebook. Usado en headers, títulos, footer.
+- **Fondo Hero**: Gradient magenta-púrpura (#8B3A8B → #5D2A5D) que replica la textura de la portada
+- **Contraste**: Blanco limpio para legibilidad en fondos oscuros
 
-**IMPORTANTE**: Estos colores son placeholders. Actualizar con los colores reales del ebook.
+### Estrategia de Colores para 45+
+
+- **Fondos de contenido**: Blanco limpio (no el magenta intenso del ebook)
+- **Títulos**: Rosa carmesí (#fe4076) para consistencia con marca
+- **CTAs**: Verde neón (#86fc00) con texto negro para máximo contraste
+- **Hover states**: Versiones ligeramente más oscuras
 
 ---
 
 ## 🔤 Tipografía
 
-### Font Stack Actual (Placeholder)
+### Font Stack Actual
 
 ```css
 --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 ```
+
+**Nota**: Usando system fonts por defecto. El ebook usa tipografía bold/heavy para impacto. Replicamos esto con `font-weight: 700-800` en títulos.
+
+### Características del Ebook
+- **Títulos**: Bold, mayúsculas, alto impacto
+- **Cuerpo**: Sans-serif limpia, fácil lectura
+- **Espaciado**: Generoso, respira bien
 
 ### Tamaños
 
@@ -192,9 +205,10 @@
 
 ```html
 <!-- Para copiar en un documento -->
-Verde Primario:      #2C5F2D
-Dorado Secundario:   #8B6914
-Crema Accent:        #E6DCB2
+Verde Neón:          #86fc00
+Rosa Carmesí:        #fe4076
+Magenta Hero:        #8B3A8B
+Púrpura Oscuro:      #5D2A5D
 Texto Oscuro:        #1A1A1A
 Texto Luz:           #666
 Borde:               #DDD
