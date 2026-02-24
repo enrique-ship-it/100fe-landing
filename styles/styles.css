@@ -131,16 +131,10 @@ a:hover {
    ================================================================ */
 
 .hero {
-    background: linear-gradient(135deg, #8B3A8B 0%, #5D2A5D 100%);
-    color: var(--color-white);
-    padding: var(--spacing-2xl) 0;
-    text-align: center;
     position: relative;
     overflow: hidden;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    height: 600px;
 }
 
 .hero__video {
@@ -150,39 +144,55 @@ a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 1;
-}
-
-.hero__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 2;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('../assets/images/diseno-ebook.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.15;
-    z-index: 0;
+    display: block;
 }
 
 .hero__content {
+    display: none;
+}
+
+/* ================================================================
+   INTRODUCTION SECTION
+   ================================================================ */
+
+.intro {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: var(--spacing-2xl) 0;
+    text-align: center;
+}
+
+.intro__content {
     max-width: 700px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
-    position: relative;
-    z-index: 3;
+}
+
+.intro__headline {
+    font-size: var(--font-size-h1);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.3;
+    color: #333;
+}
+
+.intro__headline .highlight {
+    color: var(--color-primary);
+    display: block;
+    margin-top: var(--spacing-sm);
+}
+
+.intro__subheadline {
+    font-size: var(--font-size-large);
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.85;
+    line-height: 1.6;
+    color: #555;
+}
+
+.intro__trust {
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-small);
+    opacity: 0.8;
+    color: #666;
 }
 
 .hero__headline {
@@ -533,7 +543,11 @@ section {
         grid-template-columns: 1fr;
     }
 }
-
+@media (max-width: 768px) {
+    .hero {
+        height: 500px;
+    }
+}
 @media (max-width: 480px) {
     :root {
         --font-size-base: 15px;
@@ -547,6 +561,14 @@ section {
     
     .hero__headline {
         font-size: var(--font-size-h2);
+    }
+    
+    .intro__headline {
+        font-size: var(--font-size-h2);
+    }
+    
+    .hero {
+        height: 400px;
     }
     
     .cta-button {
