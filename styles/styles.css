@@ -345,6 +345,14 @@ section {
     opacity: 0.95;
 }
 
+.ebook-preview__gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .ebook-preview__image {
     max-width: 600px;
     width: 100%;
