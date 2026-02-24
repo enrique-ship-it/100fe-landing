@@ -107,7 +107,7 @@ a:hover {
 
 .hero {
     background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 50%, #f0fff4 100%);
-    padding: var(--spacing-2xl) 0;
+    padding: 0;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -140,31 +140,34 @@ a:hover {
 .hero__content {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
     position: relative;
     z-index: 1;
 }
 
 .hero__ebook {
-    max-width: 450px;
+    max-width: 100%;
     width: 100%;
     height: auto;
     border-radius: 0;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    box-shadow: none;
     transition: var(--transition);
+    margin: 0;
+    display: block;
 }
 
 .hero__ebook:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+    transform: none;
+    box-shadow: none;
 }
 
 .hero__text {
     max-width: 700px;
+    padding: 0 var(--spacing-md);
 }
 
 .hero__headline {
@@ -215,6 +218,8 @@ a:hover {
     font-size: var(--font-size-small);
     opacity: 0.8;
     color: var(--color-text);
+    padding: 0;
+    margin: 0;
 }
 
 /* ================================================================
@@ -620,11 +625,11 @@ section {
     }
     
     .hero {
-        padding: var(--spacing-lg) 0;
+        padding: 0;
     }
     
-    .hero__ebook {
-        max-width: 350px;
+    .hero__content {
+        padding: var(--spacing-lg) var(--spacing-md);
     }
     
     .hero__headline {
@@ -676,10 +681,6 @@ section {
     
     .container {
         padding: 0 var(--spacing-sm);
-    }
-    
-    .hero__ebook {
-        max-width: 350px;
     }
     
     .hero__headline {
