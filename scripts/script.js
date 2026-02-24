@@ -97,27 +97,26 @@ function handleCtaClick(event) {
     // Track en Meta Pixel como AddToCart (usuario intenta comprar)
     trackPixelEvent('AddToCart', {
         content_name: '100 Ensenanzas Biblicas para Emprender',
-        value: 1,
-        currency: 'USD'
+        value: 149.64,
+        currency: 'MXN'
     });
     
     // Track en GA4
     trackGAEvent('begin_checkout', {
-        value: 1,
-        currency: 'USD',
+        value: 149.64,
+        currency: 'MXN',
         items: [{
             item_name: '100 Ensenanzas Biblicas para Emprender',
             item_category: 'ebook',
-            quantity: 1
+            quantity: 1,
+            price: 149.64
         }]
     });
     
-    // Scroll to Hotmart widget
-    const hotmartSection = document.querySelector('.hotmart-section');
-    if (hotmartSection) {
-        hotmartSection.scrollIntoView({ behavior: 'smooth' });
-        log('Scrolled to Hotmart widget');
-    }
+    // Abrir checkout de Hotmart
+    window.open('https://pay.hotmart.com/E101603962K?checkoutMode=2', '_blank');
+    log('Opening Hotmart checkout');
+}
 }
 
 // ================================================================
