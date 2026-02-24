@@ -137,6 +137,30 @@ a:hover {
     text-align: center;
     position: relative;
     overflow: hidden;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
 }
 
 .hero::before {
@@ -158,7 +182,7 @@ a:hover {
     margin: 0 auto;
     padding: 0 var(--spacing-md);
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 
 .hero__headline {
