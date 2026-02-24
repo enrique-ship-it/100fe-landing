@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="120" height="48">
+  <rect width="200" height="80" rx="6" fill="#F5A800"/>
+  <rect x="0" y="12" width="200" height="56" fill="#E30613"/>
+  <rect x="0" y="12" width="200" height="7" fill="white"/>
+  <rect x="0" y="61" width="200" height="7" fill="white"/>
+  <text x="100" y="52" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="white" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">OXXO</text>
+</svg>

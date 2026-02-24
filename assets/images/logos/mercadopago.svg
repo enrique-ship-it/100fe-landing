@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" width="140" height="48">
+  <rect width="240" height="80" rx="6" fill="white"/>
+  <!-- Oval icon -->
+  <ellipse cx="38" cy="40" rx="28" ry="22" fill="#009EE3" stroke="#1B1464" stroke-width="2.5"/>
+  <ellipse cx="38" cy="40" rx="20" ry="14" fill="#55C5F5"/>
+  <!-- Simple handshake representation -->
+  <path d="M26 38 Q32 33 38 36 Q44 33 50 38 Q44 45 38 44 Q32 45 26 38Z" fill="white" opacity="0.9"/>
+  <!-- Text -->
+  <text x="76" y="34" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#1B1464">mercado</text>
+  <text x="76" y="55" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#1B1464">pago</text>
+</svg>
