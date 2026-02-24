@@ -453,6 +453,87 @@ section {
 }
 
 /* ================================================================
+   SECCIÓN PRECIO Y MÉTODOS DE PAGO
+   ================================================================ */
+
+.pricing {
+    background-color: #f9f9f9;
+    padding: var(--spacing-2xl) 0;
+}
+
+.pricing__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pricing__price {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #6fcd00 100%);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+}
+
+.pricing__title {
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--spacing-md);
+    color: #000;
+}
+
+.pricing__amount {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #000;
+    margin: var(--spacing-md) 0;
+    line-height: 1;
+}
+
+.pricing__currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.pricing__tax {
+    font-size: var(--font-size-small);
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+}
+
+.pricing__payment {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+}
+
+.pricing__methods {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.payment-method {
+    text-align: center;
+}
+
+.payment-method__icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+.payment-method__label {
+    font-size: var(--font-size-small);
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+/* ================================================================
    SECCIÓN HOTMART
    ================================================================ */
 
@@ -539,6 +620,15 @@ section {
     .testimonials__grid {
         grid-template-columns: 1fr;
     }
+    
+    .pricing__content {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing__methods {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
 }
 
 @media (max-width: 480px) {
@@ -563,6 +653,14 @@ section {
     
     .cta-button--large {
         padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .pricing__amount {
+        font-size: 2rem;
+    }
+    
+    .payment-method__icon {
+        font-size: 2rem;
     }
 }
 
