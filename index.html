@@ -10,7 +10,7 @@
     <meta property="og:title" content="100 Enseñanzas Bíblicas para Emprender">
     <meta property="og:description" content="Propósito cristiano + Negocios rentables. Ebook diseñado para emprendedores de fe.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:image" content="https://100fe-landing.vercel.app/assets/images/ebook-table.jpg">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +20,7 @@
     <title>100 Enseñanzas Bíblicas para Emprender con Éxito y Propósito</title>
     
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="preload" href="assets/fonts/" as="font" type="font/woff2" crossorigin>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✝</text></svg>">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -49,21 +49,7 @@
     </script>
     <!-- End Google Analytics 4 -->
     
-    <!-- Hotmart Widget Script -->
-    <script type="text/javascript">
-        function importHotmart(){ 
-            var imported = document.createElement('script'); 
-            imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
-            document.head.appendChild(imported); 
-            var link = document.createElement('link'); 
-            link.rel = 'stylesheet'; 
-            link.type = 'text/css'; 
-            link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
-            document.head.appendChild(link);
-        } 
-        importHotmart(); 
-    </script>
-    <!-- End Hotmart Widget Script -->
+
 </head>
 <body>
     <!-- Hero Section -->
@@ -79,14 +65,14 @@
                     <p class="hero__subheadline">
                         La Biblia es una fuente inagotable de sabiduría para construir negocios con propósito, integridad y fe
                     </p>
-                    <div class="hero__price-badge">
-                        <span class="hero__price-label">Inversión:</span>
-                        <span class="hero__price-amount">$149.64 MXN</span>
-                    </div>
                 </div>
                 <button class="cta-button cta-button--primary cta-button--large" id="cta-hero">
                     SÍ, QUIERO EL EBOOK AHORA
                 </button>
+                <div class="hero__price-badge">
+                    <span class="hero__price-label">Solo:</span>
+                    <span class="hero__price-amount">$149.64 MXN</span>
+                </div>
                 <p class="hero__trust">✓ Descarga inmediata • Puedes imprimirlo • Acceso de por vida</p>
             </div>
         </div>
@@ -99,19 +85,19 @@
             <ul class="problem__list">
                 <li class="problem__item">
                     <span class="problem__icon">❌</span>
-                    <p>Te cuesta encontrar bibliografía cristiana sobre emprendimiento</p>
+                    <p>Sientes que tu fe y tu negocio van por caminos separados</p>
                 </li>
                 <li class="problem__item">
                     <span class="problem__icon">❌</span>
-                    <p>Quieres que tu negocio tenga un propósito que trascienda</p>
+                    <p>Tomas decisiones empresariales sin saber si van según la voluntad de Dios</p>
                 </li>
                 <li class="problem__item">
                     <span class="problem__icon">❌</span>
-                    <p>Buscas principios claros basados en la Palabra de Dios</p>
+                    <p>Los libros de negocios del mundo no resuenan con tus valores cristianos</p>
                 </li>
                 <li class="problem__item">
                     <span class="problem__icon">❌</span>
-                    <p>Necesitas sabiduría eterna aplicada a decisiones modernas</p>
+                    <p>Buscas en la Biblia guía empresarial concreta y no sabes por dónde empezar</p>
                 </li>
             </ul>
         </div>
@@ -248,6 +234,28 @@
         </div>
     </section>
 
+    <!-- Autor / Credibilidad Section -->
+    <section class="author">
+        <div class="container">
+            <div class="author__content">
+                <div class="author__text">
+                    <span class="author__label">¿Quién está detrás de este libro?</span>
+                    <h2 class="author__name">Un emprendedor cristiano como tú</h2>
+                    <p class="author__bio">
+                        Este ebook nació de años de buscar en la Palabra de Dios respuestas concretas
+                        para los desafíos del mundo empresarial. No es teología abstracta —
+                        es sabiduría bíblica aplicada a decisiones reales de negocio.
+                    </p>
+                    <ul class="author__credentials">
+                        <li>✝ Emprendedor con fe como fundamento de su negocio</li>
+                        <li>📖 100 versículos seleccionados y explicados en contexto empresarial</li>
+                        <li>🌎 Lectores en México, Colombia, España y más</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
@@ -261,9 +269,9 @@
             </button>
             <p class="section__trust">
                 ✓ Descarga inmediata vía Hotmart<br>
-                ✓ Puedes imprimirlo fácilmente desde tu casa<br>
-                ✓ 100 versículos explicados paso a paso<br>
-                ✓ Basado en principios probados por siglos
+                ✓ Compatible para imprimir y tener en tu escritorio<br>
+                ✓ <strong>Garantía de 7 días</strong> — satisfacción total o te devolvemos tu dinero<br>
+                ✓ Miles de emprendedores ya aplican estas enseñanzas
             </p>
         </div>
     </section>
@@ -276,6 +284,10 @@
                     <h3 class="pricing__title">Inversión</h3>
                     <p class="pricing__amount">$149.64 <span class="pricing__currency">MXN</span></p>
                     <p class="pricing__tax">IVA incluido ($20.64)</p>
+                    <button class="cta-button cta-button--dark pricing__cta" id="cta-pricing">
+                        COMPRAR AHORA
+                    </button>
+                    <p class="pricing__guarantee">🛡️ Garantía de 7 días — devolución sin preguntas</p>
                 </div>
                 <div class="pricing__payment">
                     <h3 class="pricing__title">Métodos de Pago Aceptados</h3>
@@ -314,6 +326,13 @@
             </p>
         </div>
     </footer>
+
+    <!-- Sticky CTA (mobile) -->
+    <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+        <button class="cta-button cta-button--primary sticky-cta__button" id="cta-sticky">
+            COMPRAR AHORA — $149.64 MXN
+        </button>
+    </div>
 
     <script src="scripts/script.js"></script>
 </body>

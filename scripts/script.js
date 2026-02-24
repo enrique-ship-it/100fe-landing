@@ -69,6 +69,8 @@ function initializeEventListeners() {
     // CTA Buttons
     const heroCtaButton = document.getElementById('cta-hero');
     const mainCtaButton = document.getElementById('cta-main');
+    const pricingCtaButton = document.getElementById('cta-pricing');
+    const stickyCtaButton = document.getElementById('cta-sticky');
     
     if (heroCtaButton) {
         heroCtaButton.addEventListener('click', handleCtaClick);
@@ -77,9 +79,20 @@ function initializeEventListeners() {
     if (mainCtaButton) {
         mainCtaButton.addEventListener('click', handleCtaClick);
     }
+
+    if (pricingCtaButton) {
+        pricingCtaButton.addEventListener('click', handleCtaClick);
+    }
+
+    if (stickyCtaButton) {
+        stickyCtaButton.addEventListener('click', handleCtaClick);
+    }
     
     // Scroll tracking
     setupScrollTracking();
+    
+    // Sticky CTA
+    setupStickyCta();
     
     // Testimonial interaction
     setupTestimonialTracking();
@@ -91,6 +104,20 @@ function initializeEventListeners() {
 
 function handleCtaClick(event) {
     event.preventDefault();
+    
+    const button = event.currentTarget;
+    const originalText = button.textContent;
+
+    // Feedback visual inmediato
+    button.textContent = 'Abriendo checkout...';
+    button.disabled = true;
+    button.style.opacity = '0.8';
+
+    setTimeout(() => {
+        button.textContent = originalText;
+        button.disabled = false;
+        button.style.opacity = '';
+    }, 3000);
     
     log('CTA clicked');
     
@@ -116,6 +143,29 @@ function handleCtaClick(event) {
     // Abrir checkout de Hotmart
     window.open('https://pay.hotmart.com/E101603962K?checkoutMode=2', '_blank');
     log('Opening Hotmart checkout');
+}
+
+// ================================================================
+// STICKY CTA
+// ================================================================
+
+function setupStickyCta() {
+    const stickyCta = document.getElementById('sticky-cta');
+    const hero = document.querySelector('.hero');
+    if (!stickyCta || !hero) return;
+
+    const showAfter = () => {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        if (heroBottom < 0) {
+            stickyCta.classList.add('is-visible');
+            stickyCta.setAttribute('aria-hidden', 'false');
+        } else {
+            stickyCta.classList.remove('is-visible');
+            stickyCta.setAttribute('aria-hidden', 'true');
+        }
+    };
+
+    window.addEventListener('scroll', showAfter, { passive: true });
 }
 
 // ================================================================
