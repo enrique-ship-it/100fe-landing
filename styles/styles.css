@@ -329,6 +329,37 @@ section {
 }
 
 /* ================================================================
+   SECCIÓN MUESTRA DEL EBOOK
+   ================================================================ */
+
+.ebook-preview {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    padding: var(--spacing-2xl) 0;
+    text-align: center;
+}
+
+.ebook-preview__subtitle {
+    font-size: var(--font-size-large);
+    color: var(--color-white);
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.95;
+}
+
+.ebook-preview__image {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+
+.ebook-preview__image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================================================
    SECCIÓN TESTIMONIOS
    ================================================================ */
 
