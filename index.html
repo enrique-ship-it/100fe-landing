@@ -32,22 +32,39 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        // NOTA: Reemplazar PIXEL_ID con tu ID real
-        fbq('init', 'PIXEL_ID_AQUI');
+        fbq('init', '772552728691061');
         fbq('track', 'ViewContent');
     </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=PIXEL_ID_AQUI&ev=ViewContent&noscript=1" /></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=772552728691061&ev=ViewContent&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
     
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_ID_AQUI"></script>
+    <!-- NOTA: Reemplazar G-XXXXXXXXXX con tu Measurement ID cuando tengas la propiedad GA4 creada -->
+    <!-- Para crear: https://analytics.google.com -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_ID_AQUI');
-    </script>
+        // window.dataLayer = window.dataLayer || [];
+        // function gtag(){dataLayer.push(arguments);}
+        // gtag('js', new Date());
+        // gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
     <!-- End Google Analytics 4 -->
+    
+    <!-- Hotmart Widget Script -->
+    <script type="text/javascript">
+        function importHotmart(){ 
+            var imported = document.createElement('script'); 
+            imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+            document.head.appendChild(imported); 
+            var link = document.createElement('link'); 
+            link.rel = 'stylesheet'; 
+            link.type = 'text/css'; 
+            link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+            document.head.appendChild(link);
+        } 
+        importHotmart(); 
+    </script>
+    <!-- End Hotmart Widget Script -->
 </head>
 <body>
     <!-- Header -->
@@ -247,8 +264,7 @@
     <section class="hotmart-section">
         <div class="container">
             <div id="hotmart-widget" class="hotmart-widget">
-                <!-- Widget de Hotmart se inserta aquí -->
-                <!-- NOTA: Agregar script de Hotmart -->
+                <a onclick="return false;" href="https://pay.hotmart.com/E101603962K?checkoutMode=2" class="hotmart-fb hotmart__button-checkout"><img src='https://static.hotmart.com/img/btn-buy-green.png' alt="Comprar el Ebook"></a>
             </div>
         </div>
     </section>
