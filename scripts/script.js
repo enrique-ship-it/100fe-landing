@@ -117,7 +117,6 @@ function handleCtaClick(event) {
     window.open('https://pay.hotmart.com/E101603962K?checkoutMode=2', '_blank');
     log('Opening Hotmart checkout');
 }
-}
 
 // ================================================================
 // SCROLL TRACKING
