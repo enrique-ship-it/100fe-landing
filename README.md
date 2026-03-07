@@ -42,10 +42,15 @@ Ver [DEPLOYMENT.md](DEPLOYMENT.md)
 ```
 100fe-landing/
 ├── index.html              # Página principal
+├── terminos.html           # Términos de servicio
+├── privacidad.html         # Política de privacidad
+├── devolucion.html         # Política de devolución
 ├── styles/
 │   └── styles.css          # Estilos (variables CSS, responsive)
 ├── scripts/
 │   └── script.js           # Lógica, tracking, eventos
+├── api/
+│   └── hotmart-webhook.js  # Purchase server-side (Meta CAPI + GA4 MP)
 ├── assets/
 │   ├── images/
 │   │   ├── logo.svg
@@ -81,6 +86,7 @@ Ver [DESIGN.md](DESIGN.md) para detalles de colores, tipografía y especificacio
 El proyecto incluye:
 - **Meta Pixel**: Track conversiones para retargeting en Facebook Ads
 - **Google Analytics 4**: Seguimiento de comportamiento y conversiones
+- **Webhook Hotmart (server-side)**: Evento `Purchase` real hacia Meta CAPI y GA4 Measurement Protocol
 
 Ver [TRACKING.md](TRACKING.md) para instrucciones de setup.
 
@@ -89,14 +95,18 @@ Ver [TRACKING.md](TRACKING.md) para instrucciones de setup.
 ## 🔑 Configuración Importante
 
 ### 1. Meta Pixel ID
-En `index.html`, reemplazar `PIXEL_ID_AQUI` con tu ID real:
+Estado actual: ✅ configurado con `772552728691061` en `index.html`.
+
+Si necesitas cambiarlo:
 
 ```html
 fbq('init', 'TU_PIXEL_ID_AQUI');
 ```
 
 ### 2. Google Analytics ID
-En `index.html`, reemplazar `GA_ID_AQUI` con tu ID real:
+Estado actual: ✅ configurado con `G-ZPV2HS45X4` en `index.html`.
+
+Si necesitas cambiarlo:
 
 ```html
 <script async src="https://www.googletagmanager.com/gtag/js?id=TU_GA_ID"></script>
@@ -105,16 +115,34 @@ En `index.html`, reemplazar `GA_ID_AQUI` con tu ID real:
 </script>
 ```
 
-### 3. Widget de Hotmart
-En `index.html`, en la sección `.hotmart-section`, agregar el código del widget:
+### 3. Checkout de Hotmart
+La landing usa CTA directos al checkout de Hotmart desde `scripts/script.js`.
 
-```html
-<div id="hotmart-widget">
-    <!-- Pegar código de Hotmart aquí -->
-</div>
+```javascript
+window.open('https://pay.hotmart.com/E101603962K?checkoutMode=2', '_blank');
 ```
 
-### 4. Tipografías Del Ebook
+También se preservan UTMs/fbclid/gclid para mejorar atribución.
+
+### 4. Purchase server-side (Webhook)
+Configurar estas variables en Vercel (`Project Settings > Environment Variables`):
+
+```bash
+HOTMART_WEBHOOK_TOKEN=...
+META_PIXEL_ID=772552728691061
+META_ACCESS_TOKEN=...
+GA4_MEASUREMENT_ID=G-ZPV2HS45X4
+GA4_API_SECRET=...
+LANDING_URL=https://100fe-landing.vercel.app
+```
+
+Endpoint disponible en producción:
+
+```text
+POST /api/hotmart-webhook
+```
+
+### 5. Tipografías Del Ebook
 Agregar archivos de fuentes a `assets/fonts/` y configurar en `styles/styles.css`:
 
 ```css

@@ -3,6 +3,9 @@
  * Tracking, interactividad y eventos
  */
 
+const HOTMART_BASE_URL = 'https://pay.hotmart.com/E101603962K?checkoutMode=2';
+const ATTRIBUTION_STORAGE_KEY = 'hotmartAttributionParams';
+
 // ================================================================
 // UTILIDADES
 // ================================================================
@@ -14,6 +17,50 @@ const log = (message, data = null) => {
     } else {
         console.log(`[100Fe] ${message}`);
     }
+};
+
+const getAttributionParamsFromUrl = () => {
+    const params = new URLSearchParams(window.location.search);
+    const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid'];
+    const result = {};
+
+    keys.forEach((key) => {
+        const value = params.get(key);
+        if (value) {
+            result[key] = value;
+        }
+    });
+
+    return result;
+};
+
+const persistAttributionParams = () => {
+    const current = getAttributionParamsFromUrl();
+    if (Object.keys(current).length > 0) {
+        localStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(current));
+        return current;
+    }
+
+    const stored = localStorage.getItem(ATTRIBUTION_STORAGE_KEY);
+    if (!stored) return {};
+
+    try {
+        return JSON.parse(stored);
+    } catch (error) {
+        log('No se pudo parsear atribución guardada', error);
+        return {};
+    }
+};
+
+const buildCheckoutUrl = () => {
+    const url = new URL(HOTMART_BASE_URL);
+    const attribution = persistAttributionParams();
+
+    Object.entries(attribution).forEach(([key, value]) => {
+        url.searchParams.set(key, value);
+    });
+
+    return url.toString();
 };
 
 /** Enviar evento a Meta Pixel */
@@ -42,6 +89,7 @@ const trackGAEvent = (eventName, data = {}) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     log('Landing page loaded');
+    persistAttributionParams();
     
     // Set footer year
     const yearElement = document.getElementById('year');
@@ -139,9 +187,19 @@ function handleCtaClick(event) {
             price: 149.64
         }]
     });
+
+    trackGAEvent('select_item', {
+        item_list_name: 'checkout_intent',
+        items: [{
+            item_name: 'Checkout Hotmart',
+            item_category: 'ebook',
+            quantity: 1
+        }]
+    });
     
     // Abrir checkout de Hotmart
-    window.open('https://pay.hotmart.com/E101603962K?checkoutMode=2', '_blank');
+    const checkoutUrl = buildCheckoutUrl();
+    window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
     log('Opening Hotmart checkout');
 }
 

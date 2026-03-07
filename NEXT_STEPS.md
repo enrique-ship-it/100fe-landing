@@ -1,1 +1,47 @@
-# ✅ SPRINT 3 COMPLETADO - Próximos Pasos\n\n## 🎉 Resumen de Logros en SPRINT 3\n\n| Componente | Estado | Detalles |\n|-----------|--------|----------|\n| **Meta Pixel** | ✅ LISTO | ID: `772552728691061` configurado |\n| **Hotmart Widget** | ✅ LISTO | Script embebido, botón funcional |\n| **GA4 Framework** | 🟡 EN STANDBY | Code ready, esperando Measurement ID |\n| **Tracking Events** | ✅ LISTO | Meta Pixel + GA4 listeners activos |\n| **Landing Page** | ✅ FUNCIONAL | Responsive, optimizada, tracked |\n\n---\n\n## 📱 Ver la Landing en Acción\n\n**URL Actual**: http://localhost:8000\n\n✅ **Comprobaciones Visuales:**\n- [ ] Hero section con imagen de portada visible\n- [ ] Colores Verde Neón (#86fc00) y Rosa (#fe4076) correctos\n- [ ] 6 pilares empresariales visibles\n- [ ] 3 testimonios con avatares\n- [ ] Botones CTA funcionales\n- [ ] Widget/botón de Hotmart visible\n- [ ] Footer con año dinámico\n\n---\n\n## 🔧 Configuración de GA4 (5 minutos)\n\n### PASO 1: Crear Propiedad GA4\n1. Ve a https://analytics.google.com\n2. Clic en **\"Crear\"**\n3. Completa:\n   - Nombre cuenta: `100Fe Landing`\n   - Nombre propiedad: `100Fe Landing Page`\n   - País, zona horaria, moneda\n4. Clic **\"Crear\"**\n\n### PASO 2: Copiar Measurement ID\n1. Administración (engranaje) → Propiedad → Información de la propiedad\n2. Copia el **Measurement ID** (formato: `G-XXXXXXXXXX`)\n3. **Guarda este ID** en lugar seguro\n\n### PASO 3: Notificar del ID\nEnvía el Measurement ID al equipo para que lo inyecte en el código.\n\n**O hazlo tú mismo:**\nSi tienes acceso al repositorio, abre `index.html` y:\n1. Busca: `<!-- <script async src=\"https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX\">` \n2. Reemplaza `G-XXXXXXXXXX` con tu ID real\n3. Descomenta las líneas de GA4\n4. Haz commit y push\n\n---\n\n## 🚀 SPRINT 4: Deploy a Vercel (10-15 minutos)\n\n### Opción A: Deploy Automático (RECOMENDADO)\n\n1. Ve a https://vercel.com/signup\n2. Clic en \"Continuar con GitHub\"\n3. Autoriza la aplicación Vercel\n4. Haz clic en \"Importar Proyecto\"\n5. Selecciona `enrique-ship-it/100fe-landing`\n6. Clic **\"Deploy\"**\n7. **¡Listo!** Tu landing está en vivo en: `https://100fe-landing.vercel.app`\n\n### Opción B: Deploy Manual\n```bash\n# Instalar Vercel CLI\nnpm i -g vercel\n\n# Desde la carpeta del proyecto\nvercel\n\n# Sigue las instrucciones interactivas\n```\n\n---\n\n## 📊 Post-Deploy Checklist\n\nUna vez que la landing esté en Vercel:\n\n### ✅ Verificaciones de Landing\n- [ ] Landing carga en https://100fe-landing.vercel.app\n- [ ] Responsive en móvil (F12 → Toggle device)\n- [ ] Imágenes cargan correctamente\n- [ ] Botones son clickeables\n- [ ] Scroll es smooth\n\n### ✅ Verificaciones de Tracking\n\n**Meta Pixel**:\n1. Descarga extensión \"Meta Pixel Helper\" en Chrome\n2. Visita la landing en Vercel\n3. Instala la extensión\n4. Abre \"Meta Pixel Helper\" → deberías ver:\n   - ✅ ViewContent event\n   - ✅ Pixel ID: 772552728691061\n5. Haz clic en CTA → verás AddToCart event\n\n**Google Analytics 4** (si ya está configurado):\n1. Ve a https://analytics.google.com\n2. Selecciona la propiedad `100Fe Landing Page`\n3. Ve a **Reportes** → **Tiempo real**\n4. Deberías ver 1 usuario activo\n5. Haz clic en botones → verás eventos generarse\n\n---\n\n## 💰 Lanzar Meta Ads (Después de Deploy)\n\nUna vez que todo esté funcionando en Vercel:\n\n### Configuración de Ads\n1. Ve a https://business.facebook.com\n2. Ads Manager → Crear campaña\n3. Objetivo: **Conversiones**\n4. Pixel: Selecciona `772552728691061`\n5. Audiencia: Cristianos 45+\n6. Budget: $10-20 diarios inicial\n7. URL de la campaña: `https://100fe-landing.vercel.app`\n\n### Monitoreo\n- **Cost per Sale**: Mantener < $3 / venta\n- **ROAS**: Apuntar a 5:1+ ratio\n- **Conversion Rate**: Mínimo 2% (ideal: 3-5%)\n\n---\n\n## 📈 Métricas a Monitorear\n\n### Meta Ads Manager\n- Reach (alcance)\n- Clicks\n- Cost per Click\n- Conversions (via Pixel)\n- Cost per Conversion\n- ROAS\n\n### Google Analytics\n- Sessions\n- Users\n- Bounce Rate\n- Average Session Duration\n- Conversion Rate (scroll depth, CTA clicks)\n\n---\n\n## 🔍 Troubleshooting\n\n### \"No veo eventos en Meta Pixel Helper\"\n1. Verifica que Pixel ID sea: `772552728691061`\n2. Abre consola (F12) → busca errores\n3. Verifica que fbq esté definido\n4. Recarga la página\n\n### \"GA4 no muestra datos\"\n1. Verifica Measurement ID sea formato `G-XXXXXXXXXX`\n2. Espera 10-15 minutos (GA4 toma tiempo)\n3. Abre consola → busca `gtag` function\n4. Verifica que GA4 código esté descomentado\n\n### \"Widget Hotmart no aparece\"\n1. Abre consola (F12) → busca errores de script\n2. Verifica que `importHotmart()` se ejecutó\n3. Recarga la página (Ctrl+Shift+R)\n4. Trata desde otro navegador\n\n---\n\n## 📚 Documentación de Referencia\n\n- [TRACKING.md](TRACKING.md) - Detalles técnicos de tracking\n- [DESIGN.md](DESIGN.md) - Sistema de diseño\n- [DEPLOYMENT.md](DEPLOYMENT.md) - Guía de deployment\n- [GA4_SETUP.md](GA4_SETUP.md) - Configuración de GA4\n- [SPRINT_3_SUMMARY.md](SPRINT_3_SUMMARY.md) - Resumen técnico de SPRINT 3\n\n---\n\n## 🎯 Timeline Recomendado\n\n| Tarea | Tiempo | Estado |\n|-------|--------|--------|\n| Crear propiedad GA4 | 5 min | 🔄 Esta semana |\n| Deploy a Vercel | 10 min | 🔄 Esta semana |\n| Verificar tracking | 5 min | 🔄 Esta semana |\n| **Landing lista para ads** | ~20 min | 🟡 Por completar |\n| Lanzar ads Meta | 10 min | ⏳ Siguiente paso |\n| **Monitorear performance** | Continuo | ⏳ Después del launch |\n\n---\n\n## ❓ Próximas Preguntas\n\n**Q: ¿Cuánto cuesta la landing?**\nA: $0 en infrastructure (Vercel free tier). Solo marketing ads.\n\n**Q: ¿Puedo cambiar los colores después?**\nA: Sí. TODO es personalizable. SPRINT 5 es para refinamientos.\n\n**Q: ¿Cómo sé que está convirtiendo?**\nA: Meta Pixel + GA4 te mostrarán cada click y scroll.\n\n**Q: ¿Cuánto cuesta por venta esperado?**\nA: Inicial $3-5 USD. Optimizar a <$2 con testing A/B.\n\n---\n\n## 🎓 Lo Aprendiste en SPRINT 3\n\n✅ Implementar tracking con Meta Pixel\n✅ Embeber widgets de terceros (Hotmart)\n✅ Configurar Google Analytics 4\n✅ Estructura completa de landing page\n✅ Git workflow y commits semánticos\n\n---\n\n**¿Listo para SPRINT 4?** 🚀\n\n**Próximo paso**: Crear propiedad GA4 (5 minutos)\n**Luego**: Deploy a Vercel (10 minutos)\n**Después**: Lanzar ads y monitorear conversiones\n\n---\n\n**Preguntas o problemas?** \nRevisa [TRACKING.md](TRACKING.md) o los logs en consola (F12).\n\n**¡Vamos a 100!** 💚 FE = SABIDURÍA + ACCIÓN\n"
+# Next Steps — Post-Launch
+
+**Contexto:** la landing ya está publicada y operativa en producción.
+
+## 1) Cierre de Repositorio (Hoy)
+
+- Revisar cambios pendientes: `git status`
+- Commit final de cierre
+- Push a `main`
+- Confirmar que Vercel tome el último commit
+
+### Commit sugerido
+
+```bash
+git add .
+git commit -m "chore(closeout): limpieza final de repo y actualización de estado"
+git push origin main
+```
+
+## 2) Verificación de Producción (Hoy)
+
+- URL: https://100fe-landing.vercel.app
+- Revisar desktop + mobile
+- Confirmar CTA abre checkout Hotmart
+- Confirmar links legales funcionales
+
+## 3) Tracking QA (Esta semana)
+
+- Meta Pixel Helper:
+  - `ViewContent` en page load
+  - `AddToCart` en clic de CTA
+- GA4 Realtime:
+  - `page_view`
+  - `begin_checkout`
+  - `scroll`
+
+## 4) Operación de Ads (Siguiente paso)
+
+- Crear campaña Meta Ads con objetivo de conversiones
+- Usar URL de producción
+- Definir presupuesto inicial y KPI base (CTR, CPC, CPA, ROAS)
+
+## 5) Mantenimiento Ligero
+
+- Revisión semanal de conversiones
+- Ajustes de copy/creativos según resultados
+- Mantener documentación al día cuando haya cambios funcionales

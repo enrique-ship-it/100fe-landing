@@ -9,8 +9,9 @@
 La landing incluye tracking en:
 1. **Meta Pixel** - Para retargeting en Facebook Ads
 2. **Google Analytics 4** - Para análisis de comportamiento
+3. **Webhook de Hotmart** - Para registrar `Purchase` real server-side
 
-Ambos están configurados en `index.html` pero requieren IDs reales.
+Meta Pixel y GA4 ya están configurados en `index.html` con IDs reales.
 
 ---
 
@@ -24,7 +25,9 @@ Ambos están configurados en `index.html` pero requieren IDs reales.
 
 ### Paso 2: Configurar en `index.html`
 
-En el `<head>`, reemplazar `PIXEL_ID_AQUI`:
+Estado actual: `fbq('init', '772552728691061')`.
+
+Si deseas cambiar el pixel, reemplazar en el `<head>`:
 
 ```html
 <script>
@@ -62,7 +65,9 @@ También reemplazar en el noscript:
 
 ### Paso 2: Configurar en `index.html`
 
-Reemplazar `GA_ID_AQUI` en dos lugares:
+Estado actual: `G-ZPV2HS45X4`.
+
+Si deseas cambiar GA4, reemplazar en dos lugares:
 
 ```html
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -87,7 +92,7 @@ Reemplazar `GA_ID_AQUI` en dos lugares:
 |--------|--------|-------|
 | **ViewContent** | Al cargar la página | Automático |
 | **AddToCart** | Click en botón CTA | product name, value, currency |
-| **Purchase** | Hotmart + webhook (opcional) | - |
+| **Purchase** | Confirmación de compra por webhook Hotmart | value, currency, transaction_id |
 
 ### Google Analytics 4 Events
 
@@ -137,30 +142,54 @@ fbq('track', 'AddToCart', {
 
 **Dispara**: Usuario completa compra en Hotmart
 
-**Método 1: Webhook de Hotmart** (Recomendado)
+**Método implementado: Webhook de Hotmart** (Recomendado)
 
-Hotmart puede enviar webhook a tu servidor cuando se completa venta:
+Hotmart envía webhook al endpoint serverless:
 
-```javascript
-fbq('track', 'Purchase', {
-    value: PRECIO_EBOOK,
-    currency: 'BRL',  // O la moneda que uses
-    content_name: '100 Ensenanzas Biblicas'
-});
+```text
+POST /api/hotmart-webhook
 ```
 
-**Método 2: Click en Widget**
+El endpoint:
+- Valida token (`HOTMART_WEBHOOK_TOKEN`)
+- Filtra compras aprobadas (`approved`)
+- Envía `Purchase` a Meta Conversions API
+- Envía `purchase` a GA4 Measurement Protocol
 
-Si detectas click en el botón de Hotmart dentro del iframe:
+Variables necesarias (Vercel env vars):
+
+```bash
+HOTMART_WEBHOOK_TOKEN=...
+META_PIXEL_ID=772552728691061
+META_ACCESS_TOKEN=...
+GA4_MEASUREMENT_ID=G-ZPV2HS45X4
+GA4_API_SECRET=...
+LANDING_URL=https://100fe-landing.vercel.app
+```
+
+Ejemplo de evento server-side para Meta:
 
 ```javascript
-// En script.js
-const hotmartButton = document.querySelector('[data-hotmart]');
-if (hotmartButton) {
-    hotmartButton.addEventListener('click', () => {
-        fbq('track', 'Purchase', {...});
-    });
+{
+   event_name: 'Purchase',
+   custom_data: {
+      value: 149.64,
+      currency: 'MXN'
+   }
 }
+```
+
+Ejemplo de evento server-side para GA4:
+
+```javascript
+{
+   name: 'purchase',
+   params: {
+      transaction_id: 'tx_123',
+      value: 149.64,
+      currency: 'MXN'
+   }
+});
 ```
 
 **Para qué**: Cerrar el loop de conversión y optimizar Facebook Ads
@@ -225,7 +254,7 @@ Ahora en reportes verás "Conversion Rate"
    ↓
 5. Usuario hace click "Obtén Ebook" → fbq('track', 'AddToCart')
    ↓
-6. Scroll a widget Hotmart
+6. Apertura de checkout Hotmart (nueva pestaña)
    ↓
 7. Usuario compra en Hotmart → fbq('track', 'Purchase') [webhook]
    ↓
@@ -340,7 +369,114 @@ Una vez tengas datos:
 - [ ] Click en CTA dispara eventos
 - [ ] Scroll tracking funciona
 - [ ] No hay errores en console
-- [ ] Hotmart webhook configurado (opcional pero recomendado)
+- [ ] Hotmart webhook configurado
+
+---
+
+## ✅ Checklist Operativo (Vercel + Hotmart + Purchase server-side)
+
+### Opción rápida (semi-automatizada por CLI)
+
+Se agregaron scripts en `scripts/` para reducir pasos manuales:
+
+```bash
+chmod +x scripts/setup-vercel-env.sh scripts/test-hotmart-webhook.sh
+```
+
+1) Crear `.env.local` en raíz (puedes copiar `.env.example`).
+
+Recomendado para deploy: crear `.env.deploy` (para no mezclar con `.env.local` de desarrollo):
+
+```bash
+cp .env.example .env.deploy
+```
+
+2) Cargar variables en Vercel (preview + production):
+
+```bash
+./scripts/setup-vercel-env.sh .env.deploy
+```
+
+3) Probar webhook en producción:
+
+```bash
+export HOTMART_WEBHOOK_TOKEN='tu_token_webhook_hotmart'
+./scripts/test-hotmart-webhook.sh
+```
+
+Nota: en Hotmart el webhook del producto sigue siendo configuración manual única (panel web).
+
+### 1) Variables en Vercel (Project Settings → Environment Variables)
+
+Configurar exactamente:
+
+```bash
+HOTMART_WEBHOOK_TOKEN=tu_token_webhook_hotmart
+META_PIXEL_ID=772552728691061
+META_ACCESS_TOKEN=tu_meta_access_token
+GA4_MEASUREMENT_ID=G-ZPV2HS45X4
+GA4_API_SECRET=tu_ga4_api_secret
+LANDING_URL=https://100fe-landing.vercel.app
+```
+
+Luego hacer redeploy para que las variables tomen efecto.
+
+### 2) Endpoint de webhook en producción
+
+URL final del webhook:
+
+```text
+https://100fe-landing.vercel.app/api/hotmart-webhook
+```
+
+### 3) Configuración en Hotmart
+
+En Hotmart (configuración de Webhooks del producto):
+
+1. Crear webhook nuevo.
+2. URL: `https://100fe-landing.vercel.app/api/hotmart-webhook`
+3. Evento a enviar: compra aprobada (`approved`).
+4. Método: `POST`.
+5. Incluir token compartido en payload/campo `hottok` igual a `HOTMART_WEBHOOK_TOKEN`.
+
+### 4) Prueba técnica rápida (antes de tráfico real)
+
+Puedes simular una compra aprobada con:
+
+```bash
+curl -X POST https://100fe-landing.vercel.app/api/hotmart-webhook \
+   -H "Content-Type: application/json" \
+   -d '{
+      "hottok": "tu_token_webhook_hotmart",
+      "status": "approved",
+      "purchase": {
+         "transaction": "tx_test_100fe_001",
+         "currency": "MXN",
+         "price": { "value": 149.64 }
+      },
+      "buyer": {
+         "email": "comprador@example.com",
+         "checkout_phone": "5215512345678"
+      }
+   }'
+```
+
+Respuesta esperada: `ok: true` y `tracked: purchase`.
+
+### 5) Validación end-to-end (producción)
+
+1. Abrir landing con UTMs.
+2. Hacer click en CTA (ver `AddToCart` + `begin_checkout`).
+3. Completar compra de prueba en Hotmart.
+4. Verificar recepción en webhook (`ok: true`).
+5. Verificar evento `Purchase` en Meta Events Manager.
+6. Verificar evento `purchase` en GA4 Realtime/DebugView.
+
+### 6) Criterio de cierre técnico
+
+- Meta Pixel: `ViewContent`, `AddToCart`, `Purchase` (server-side) visibles.
+- GA4: `begin_checkout` y `purchase` visibles.
+- Sin errores 4xx/5xx en `/api/hotmart-webhook`.
 
 ---
 

@@ -6,6 +6,7 @@ node_modules/
 .env
 .env.local
 .env.*.local
+.env.deploy
 
 # IDE
 .vscode/
@@ -19,7 +20,7 @@ node_modules/
 Thumbs.db
 
 # Build
-.vercel
+.vercel/
 .next
 
 # Dependencies lock (opcional)
